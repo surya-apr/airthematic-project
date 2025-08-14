@@ -21,9 +21,11 @@ output application/json
 {
 	"addition": vars.a + vars.b,
 	"subtraction": vars.a - vars.b,
-	"divison": vars.a/vars.b
+	"divison": vars.a/vars.b,
+    "multipication": vars.a*vars.b
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 	</flow>
+
 </mule>
