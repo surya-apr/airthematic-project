@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="f2c7b659-1299-40b3-bec7-c79d1ad13bfd" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="airthematic-projectFlow" doc:id="852ecec6-2a3e-40f5-bcc3-0b46bca71956" >
+		<http:listener doc:name="Listener" doc:id="0912a66e-07db-4f79-98d4-8dd729dbd707" config-ref="HTTP_Listener_config" path="/demo-add"/>
+		<logger level="INFO" doc:name="Logger" doc:id="973416eb-3b56-496c-bebf-9e78f68e5ae3" message="--------airthematic project logger is started---------------"/>
+		<set-variable value="10" doc:name="a" doc:id="622f1d65-cc95-40fb-b434-8dc9a8dc6ebc" variableName="a"/>
+		<set-variable value="5" doc:name="b" doc:id="51675708-73ef-4dd1-9d8d-33007741471f" variableName="b"/>
+		<ee:transform doc:name="Transform Message" doc:id="955bc799-482d-403e-b51c-0f07d7835500" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"addition": vars.a + vars.b,
+	"subtraction": vars.a - vars.b
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
