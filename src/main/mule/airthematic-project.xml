@@ -26,6 +26,7 @@ output application/json
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="9d98ec74-b174-4ac8-a85f-64a7b82de4f5" message="------------- airthamatic log is ended----------"/>
 	</flow>
 
 </mule>
